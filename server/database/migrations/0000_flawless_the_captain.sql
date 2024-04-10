@@ -5,3 +5,5 @@ CREATE TABLE `tickets` (
 	`username` text NOT NULL,
 	`avatar` text NOT NULL
 );
+--> statement-breakpoint
+CREATE UNIQUE INDEX `tickets_username_unique` ON `tickets` (`username`);

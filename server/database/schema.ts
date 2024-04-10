@@ -5,7 +5,7 @@ export const tickets = sqliteTable("tickets", {
   id: integer("id").primaryKey(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
   name: text("name").notNull(),
-  username: text("username").notNull(),
+  username: text("username").notNull().unique(),
   avatar: text("avatar").notNull(),
 });
 

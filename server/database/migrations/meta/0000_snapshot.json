@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "ea408783-cdca-4389-b33e-b2047bbafd47",
+  "id": "e22c1625-f81d-4631-a990-c9d889e29392",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "tickets": {
@@ -44,7 +44,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "tickets_username_unique": {
+          "name": "tickets_username_unique",
+          "columns": [
+            "username"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
