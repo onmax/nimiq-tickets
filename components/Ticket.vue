@@ -1,19 +1,24 @@
 <script setup lang="ts">
-const { loggedIn, user, clear } = useUserSession()
+import type { TicketInsert } from '~/server/utils/drizzle';
 
-const { data: ticket } = await useFetch('/api/tickets', { query: { username: user.value?.username }})
-console.log(JSON.stringify(ticket))
-if(!ticket.value) {
-  console.log(`no ticket found for ${user.value?.username}`)
-  const ticketData = { username: user.value?.username, name: user.value?.name, avatar: user.value?.avatar }
-  const { data: ticket } = await useFetch('/api/tickets', { method: 'POST', body: ticketData })
-  console.log(ticket)
-}
+const { user, clear } = useUserSession()
+
+const { data: ticket, refresh } = await useFetch('/api/tickets', {query: { username: user.value?.username }})
+
+onMounted(async () => {
+  console.log(ticket.value)
+  if (ticket.value) {
+    return
+  }
+  const ticketBody: Omit<TicketInsert, 'createdAt'> = user.value!
+  await $fetch('/api/tickets', { method: 'POST', body: ticketBody })
+  refresh()
+})
 </script>
 
 <template>
-<button @click="clear">Logout</button>
-Ticket: {{ ticket }}
+  <button @click="clear">Logout</button>
+  Ticket: {{ ticket }}
 
-User: {{ user }}
+  User: {{ user }}
 </template>

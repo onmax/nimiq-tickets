@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-auth-utils"],
-  auth: {}
+  modules: [
+    "nuxt-auth-utils",
+    "@nuxthub/core"
+  ],
+  auth: {},
+  hub: {
+    database: true
+  }
 })

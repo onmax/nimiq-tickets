@@ -1,6 +1,6 @@
 import { tickets } from "@/server/database/schema";
-import { db } from "@/server/sqlite-service";
 import { eq } from "drizzle-orm";
+import { useDrizzle } from "~/server/utils/drizzle";
 
 export default defineEventHandler(async (event) => {
   const { username } = getQuery<{username:string}>(event)
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const ticket = db.select().from(tickets).where(eq(tickets.username, username)).get();
+    const ticket = await useDrizzle().select().from(tickets).where(eq(tickets.username, username)).get();
     if(!ticket) {
       return createError({ statusCode: 404, statusMessage: `Ticket not found` })
     }

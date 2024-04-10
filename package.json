@@ -8,11 +8,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:generate": "drizzle-kit generate:sqlite",
-    "db:push": "drizzle-kit push:sqlite",
-    "db:studio": "drizzle-kit studio"
+    "db:generate": "drizzle-kit generate:sqlite"
   },
   "dependencies": {
+    "@nuxthub/core": "^0.5.1",
     "better-sqlite3": "^9.4.5",
     "drizzle-orm": "^0.30.7",
     "nuxt": "^3.11.2",
@@ -22,6 +21,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.9",
     "drizzle-kit": "^0.20.14",
-    "nuxt-auth-utils": "^0.0.22"
+    "nuxt-auth-utils": "^0.0.22",
+    "wrangler": "^3.48.0"
   }
 }
