@@ -13,5 +13,7 @@ if(!ticket.value) {
 
 <template>
 <button @click="clear">Logout</button>
-{{ ticket }}
+Ticket: {{ ticket }}
+
+User: {{ user }}
 </template>
